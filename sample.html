@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>New Selector Demo</title>
+    
+    <link rel="stylesheet" href="jquery.ui.jawesomeselect.css" type="text/css" media="screen" title="Test Stylesheet" charset="utf-8" />
+    <script src="jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="ui.core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="ui.sortable.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery.ui.jawesomeselect.js" type="text/javascript" charset="utf-8"></script>
+    
+    <style>
+        * {
+        	font-size:11px;
+	        font-family:"Lucida Grande","Verdana";
+        }
+        body 
+        {
+        	background-color:#ffffee;
+        }
+        h1 
+        {
+        	font-size:15px;
+        }
+        h2 
+        {
+        	font-size:13px;
+        }
+        form 
+        {
+        	width: 500px;
+        }
+        p 
+        {
+        	font-size:12px;
+        	line-height:18px;
+        }
+    </style>  
+  </head>
+  
+  <body>    
+    <form>
+      <h1>jquery.ui.jawesomeselect.js</h1>
+      <p><a href="#" class="documentation">Show/hide documentation</a></p>
+      <div class="info" style="display:none;">
+      <p>Created April 2009, Anthony Cameron</p>
+      <p>Tested with jQuery 1.3.2, FF3, IE7, IE8</p>
+      <p>This widget is a replacement for &lt;select&gt; boxes. They are marked up just like any regular select box (I recommend giving them unique IDs rather than no ID). You may provide multiple selected="selected" attributes on your &lt;option&gt;'s if you wish to have multiple selected upon init (requires passing a parameter).</p>
+      <p>The first example is simply initialized by $("#select0").jawesomeselect(), and the values is returned in a string array exactly as a standard select box with $("#select0").val()</p>
+      <p>It supports both mouse and keyboard UI. The left/right arrows will make a token (your selected value) active. You can delete a selected token if you press backspace or escape. If you continue pressing backspace, you will continue to delete the tokens as expected. As you begin to type, the results list will auto-complete every 500ms (by default), and you can use the up/down arrows to highlight a result, and the enter key to select it. At any time, Escape key will set any active tokens to inactive and clear the input.</p>
+      <p>With the mouse, you can click on multiple tokens to make them active simultaneously for delete with backspace/delete. If sortable is enabled (requires ui.sortable.js), you can sort your options with the mouse (I can't think of a real practical reason you'd want to yet, as there's no method to expose order in the $("#select0").val() (yet?)).  The close buttons do their obvious implied functions.  If you click anywhere on the tooltip you can see the full list of results (ironically, currently clicking "Click here" has a bug due to event bubbling(?)).</p>
+      <p>Please read the header of the .js file for explanations of what the various options you can pass in. Public methods are those without a underscore, and can be called from the page with $("#select1").jawesomeselect("focus") after init (general jQuery UI rules apply).</p>
+      </div>
+      <h2>default (zero-initialization)</h2>      
+      <select id="select0">
+        <option value="1">Arts - Anthropology</option>
+        <option value="2" selected="selected">Arts - Applied Economics</option>
+        <option value="3" selected="selected">Arts - Applied Studies</option>
+        <option value="4">Arts - Digital Arts Communication</option>
+        <option value="5" selected="selected">Arts - English</option>
+        <option value="6">Arts - English-RPW</option>
+        <option value="7">Arts - Financial Management</option>
+        <option value="8">Arts - History</option>
+        <option value="9" selected="selected">Arts - Human Resources</option>
+        <option value="10">Arts - Philosophy</option>
+        <option value="11">Arts - Management Accounting</option>
+        <option value="12">Arts - Political Science</option>
+        <option value="13">Arts - Psychology</option>
+        <option value="14">Arts - Sociology</option>        
+      </select>
+      <br /><br />
+      <h2>preselected_values, allow_new_elements, sortable</h2>
+      <select id="select1" name="select1[]" multiple="multiple" style="width:500px">
+        <option value="1">Arts - Anthropology</option>
+        <option value="2" selected="selected">Arts - Applied Economics</option>
+        <option value="3" selected="selected">Arts - Applied Studies</option>
+        <option value="4">Arts - Digital Arts Communication</option>
+        <option value="5" selected="selected">Arts - English</option>
+        <option value="6">Arts - English-RPW</option>
+        <option value="7">Arts - Financial Management</option>
+        <option value="8">Arts - History</option>
+        <option value="9" selected="selected">Arts - Human Resources</option>
+        <option value="10">Arts - Philosophy</option>
+        <option value="11">Arts - Management Accounting</option>
+        <option value="12">Arts - Political Science</option>
+        <option value="13">Arts - Psychology</option>
+        <option value="14">Arts - Sociology</option>        
+      </select>
+      <br /><br />
+      <h2>multiselect_enabled</h2>
+      <select id="select2" name="select2" multiple="multiple">
+        <option value="1">Arts - Anthropology</option>
+        <option value="2" selected="selected">Arts - Applied Economics</option>
+        <option value="3" selected="selected">Arts - Applied Studies</option>
+        <option value="4">Arts - Digital Arts Communication</option>
+        <option value="5">Arts - English</option>
+        <option value="6">Arts - English-RPW</option>
+        <option value="7">Arts - Financial Management</option>
+        <option value="8">Arts - History</option>
+        <option value="9">Arts - Human Resources</option>
+        <option value="10">Arts - Philosophy</option>
+        <option value="11">Arts - Management Accounting</option>
+        <option value="12">Arts - Political Science</option>
+        <option value="13">Arts - Psychology</option>
+        <option value="14">Arts - Sociology</option>        
+      </select>
+      <br /><br />
+      <h2>remote_datasource</h2>
+      <select id="select3">
+      </select>
+    </form>  
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            $("#select0").jawesomeselect();
+            $("#select1").jawesomeselect({
+                preselected_values: true,
+                allow_new_elements: true,
+                sortable: true
+            });
+            $("#select2").jawesomeselect({
+                multiselect_enabled: true
+            });
+            $("#select3").jawesomeselect({
+                remote_datasource: true,
+                datasource_url: "fetched.txt"
+            });
+
+            $("#select0").jawesomeselect('focus');
+            $(".documentation").click(function() {
+                if ($(".info").is(":visible")) {
+                    $(".info").fadeOut();
+                }
+                else {
+                    $(".info").fadeIn();
+                }
+            });
+        });
+    </script>
+  </body>  
+</html>
