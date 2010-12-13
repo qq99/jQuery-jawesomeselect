@@ -1,1 +1,11 @@
-Please refer to sample.html for examples of usage
+Tested with jQuery 1.3.2, FF3, IE7, IE8
+
+This widget is a replacement for <select> boxes. They are marked up just like any regular select box (I recommend giving them unique IDs rather than no ID). You may provide multiple selected="selected" attributes on your <option>'s if you wish to have multiple selected upon init (requires passing a parameter).
+
+The first example is simply initialized by $("#select0").jawesomeselect(), and the values is returned in a string array exactly as a standard select box with $("#select0").val()
+
+It supports both mouse and keyboard UI. The left/right arrows will make a token (your selected value) active. You can delete a selected token if you press backspace or escape. If you continue pressing backspace, you will continue to delete the tokens as expected. As you begin to type, the results list will auto-complete every 500ms (by default), and you can use the up/down arrows to highlight a result, and the enter key to select it. At any time, Escape key will set any active tokens to inactive and clear the input.
+
+With the mouse, you can click on multiple tokens to make them active simultaneously for delete with backspace/delete. If sortable is enabled (requires ui.sortable.js), you can sort your options with the mouse (I can't think of a real practical reason you'd want to yet, as there's no method to expose order in the $("#select0").val() (yet?)). The close buttons do their obvious implied functions. If you click anywhere on the tooltip you can see the full list of results (ironically, currently clicking "Click here" has a bug due to event bubbling(?)).
+
+Please read the header of the .js file for explanations of what the various options you can pass in. Public methods are those without a underscore, and can be called from the page with $("#select1").jawesomeselect("focus") after init (general jQuery UI rules apply).

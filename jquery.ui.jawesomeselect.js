@@ -70,7 +70,7 @@
             // only bind once, would be good to have a specific reference to this to unbind it specifically if needed rather than unbinding all $(document).click events
             $(document).click(function(e) {
                 if (!self.isFocused) return;
-                console.log("click fire from " + self._control().find("select").attr("id"));
+                //console.log("click fire from " + self._control().find("select").attr("id"));
                 var parent_wrapper = $(e.target).parents(".jawesome_wrapper");
                 var isWidget = (parent_wrapper.length > 0);
                 //console.log($(e.target));
@@ -237,7 +237,7 @@
                 dataType: "json",
                 success: function(response) {
                     $(response).each(function() {
-                        console.log(this);
+                        //console.log(this);
                     });
                     o.json.onSuccess();
                 },
